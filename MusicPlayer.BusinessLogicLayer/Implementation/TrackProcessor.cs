@@ -14,21 +14,22 @@ namespace MusicPlayer.BusinessLogicLayer.Implementation
 {
     public class TrackProcessor : ITrackProcessor
     {
-        private TrackRepository _trackRepository;
-        private DbContext _dbContext;
+        private IUnitOfWork _unitOfWork;
 
         public TrackProcessor()
         {
-            
+            _unitOfWork = new UnitOfWork();
         }
         public IEnumerable<Track> LoadTracks()
         {
-            throw new NotImplementedException();
+            return _unitOfWork.TrackRepository.GetAll();
         }
 
         public void SaveTrackToDb(Track track)
         {
-            throw new NotImplementedException();
+            _unitOfWork.TrackRepository.Add(track);
+
+            _unitOfWork.Commit();
         }
 
         public IEnumerable<Track> SortTracks()
