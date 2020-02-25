@@ -56,6 +56,19 @@
     <Compile Include="IGenericKeyRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="Migrations\202002252002074_InitialSchema.cs" />
+    <Compile Include="Migrations\202002252002074_InitialSchema.designer.cs">
+      <DependentUpon>202002252002074_InitialSchema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002252042361_PopulateGenreFormatAndArtist.cs" />
+    <Compile Include="Migrations\202002252042361_PopulateGenreFormatAndArtist.designer.cs">
+      <DependentUpon>202002252042361_PopulateGenreFormatAndArtist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002252128354_PopulateAlbumAndTrack.cs" />
+    <Compile Include="Migrations\202002252128354_PopulateAlbumAndTrack.designer.cs">
+      <DependentUpon>202002252128354_PopulateAlbumAndTrack.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryRealization\TrackRepository.cs" />
     <Compile Include="Repository\ITrackRepository.cs" />
@@ -71,6 +84,21 @@
       <Project>{67f81478-f18f-4a95-bc21-d2fa232cbb77}</Project>
       <Name>MusicPlayer.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202002252002074_InitialSchema.resx">
+      <DependentUpon>202002252002074_InitialSchema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002252042361_PopulateGenreFormatAndArtist.resx">
+      <DependentUpon>202002252042361_PopulateGenreFormatAndArtist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002252128354_PopulateAlbumAndTrack.resx">
+      <DependentUpon>202002252128354_PopulateAlbumAndTrack.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PopulationScript\PopulateAlbumAndTrack.sql" />
+    <Content Include="PopulationScript\PopulateGenreAndFormat.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

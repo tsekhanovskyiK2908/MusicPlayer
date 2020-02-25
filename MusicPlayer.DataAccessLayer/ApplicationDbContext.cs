@@ -14,7 +14,7 @@ namespace MusicPlayer.DataAccessLayer
     {
         public DbSet<Artist> Artists { get; set; }
 
-        public DbSet<Artist> Albums { get; set; }
+        public DbSet<Album> Albums { get; set; }
         
         public DbSet<Track> Tracks { get; set; }
 
@@ -28,7 +28,7 @@ namespace MusicPlayer.DataAccessLayer
 
         public DbSet<User> Users { get; set; }
 
-        public ApplicationDbContext():base(ConfigurationManager.ConnectionStrings["MusicPlayerDB"].ConnectionString)
+        public ApplicationDbContext():base("MusicPlayerDB")
         {
 
         }
