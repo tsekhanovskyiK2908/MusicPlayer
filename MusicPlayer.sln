@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicPlayer.Services", "Mus
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicPlayer.DataAccessLayer", "MusicPlayer.DataAccessLayer\MusicPlayer.DataAccessLayer.csproj", "{2FF80B53-4696-4002-B842-E1593F9B4DD3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicPlayer.SelfHost", "MusicPlayer.SelfHost\MusicPlayer.SelfHost.csproj", "{0EA5B992-48D1-48F7-A604-A23C414DF0D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{2FF80B53-4696-4002-B842-E1593F9B4DD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FF80B53-4696-4002-B842-E1593F9B4DD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FF80B53-4696-4002-B842-E1593F9B4DD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EA5B992-48D1-48F7-A604-A23C414DF0D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EA5B992-48D1-48F7-A604-A23C414DF0D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EA5B992-48D1-48F7-A604-A23C414DF0D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EA5B992-48D1-48F7-A604-A23C414DF0D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
