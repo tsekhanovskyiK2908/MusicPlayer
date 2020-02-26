@@ -54,6 +54,7 @@
     <Compile Include="Abstraction\ITrackProcessor.cs" />
     <Compile Include="Collection\TrackAggregate.cs" />
     <Compile Include="Collection\TrackAggregateBuildIn.cs" />
+    <Compile Include="Collection\TrackAggregateParameter.cs" />
     <Compile Include="IAggregateCollection.cs" />
     <Compile Include="IIterator.cs" />
     <Compile Include="Implementation\TrackProcessor.cs" />

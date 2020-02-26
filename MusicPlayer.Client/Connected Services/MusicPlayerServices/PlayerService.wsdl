@@ -78,9 +78,9 @@
       <soap:address location="http://localhost:2112/PlayerService" />
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IPlayerService" binding="tns:NetTcpBinding_IPlayerService">
-      <soap12:address location="net.tcp://localhost:2113/Zza" />
+      <soap12:address location="net.tcp://localhost:2113/PlayerService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:2113/Zza</wsa10:Address>
+        <wsa10:Address>net.tcp://localhost:2113/PlayerService</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
           <Upn>DESKTOP-32D7OLF\Kyrylo</Upn>
         </Identity>

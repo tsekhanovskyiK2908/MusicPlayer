@@ -11,7 +11,7 @@ namespace MusicPlayer.DataAccessLayer.RepositoryRealization
 {
     public class TrackRepository : Repository<Track>, ITrackRepository
     {
-        public TrackRepository(DbContext dbContext) : base(dbContext)
+        public TrackRepository(ApplicationDbContext applicationDbContext) : base(applicationDbContext)
         {
         }
 

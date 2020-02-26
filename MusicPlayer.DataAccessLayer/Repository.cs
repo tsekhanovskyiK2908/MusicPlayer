@@ -9,7 +9,7 @@ namespace MusicPlayer.DataAccessLayer
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        public DbContext DbContext { get; }
+        protected readonly DbContext DbContext;
         public Repository(DbContext dbContext)
         {
             DbContext = dbContext;

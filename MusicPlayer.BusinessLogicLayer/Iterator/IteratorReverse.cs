@@ -10,10 +10,10 @@ namespace MusicPlayer.BusinessLogicLayer.Iterator
 {
     public class TrackIteratorReverse : IIterator<Track>
     {
-        private TrackAggregate _trackAggregate;
+        private TrackAggregateParameter _trackAggregate;
         private int _currentIndex;
 
-        public TrackIteratorReverse(TrackAggregate trackAggregate)
+        public TrackIteratorReverse(TrackAggregateParameter trackAggregate)
         {
             _trackAggregate = trackAggregate;
             _currentIndex = trackAggregate.Count - 1;
