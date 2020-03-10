@@ -1,0 +1,46 @@
+﻿<Window x:Class="MusicPlayer.Client.View.AddTracksToPlaylistWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MusicPlayer.Client.View"
+        mc:Ignorable="d"
+        Title="AddTracksToPlaylistWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="400"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <ListView Width="250"
+                  Height="300"
+                  VerticalAlignment="Top"
+                  ItemsSource="{Binding Path=Tracks}"
+                  SelectedItem="{Binding Path=Track}">
+            </ListView>
+            <Button Width="70"
+                    Height="30"
+                    Margin="10"
+                    Command="{Binding Path=AddTrackCommand}">
+                Add Track
+            </Button>
+            <Button Width="70"
+                    Height="30"
+                    Margin="10"
+                    Command="{Binding Path=UndoAddTrackCommand}">
+                Redo
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <ListView Width="250"
+                  Height="300"
+                  VerticalAlignment="Top"
+                  ItemsSource="{Binding Path=TracksInPlaylist}">
+            </ListView>
+            <!--<Button Width="70"
+                    Height="30"
+                    Margin="10">
+            </Button>-->
+        </StackPanel>
+    </Grid>
+</Window>

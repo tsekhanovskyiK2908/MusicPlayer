@@ -1,0 +1,29 @@
+﻿using MusicPlayer.Client.ViewModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace MusicPlayer.Client.View
+{
+    /// <summary>
+    /// Interaction logic for AddTracksToPlaylistWindow.xaml
+    /// </summary>
+    public partial class AddTracksToPlaylistWindow : Window
+    {
+        public AddTracksToPlaylistWindow()
+        {
+            InitializeComponent();
+            DataContext = new AddTrackToPlaylistWindowViewModel();
+        }
+    }
+}

@@ -1,5 +1,4 @@
-﻿using MusicPlayer.Client.Command;
-using MusicPlayer.Client.MusicPlayerServices;
+﻿using MusicPlayer.Client.MusicPlayerServices;
 using MusicPlayer.DataAccessLayer;
 using MusicPlayer.BusinessLogicLayer.Iterator;
 using MusicPlayer.Entities;

@@ -67,16 +67,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="CommandsBuiltIn\AddTrackCommand.cs" />
+    <Compile Include="CommandsBuiltIn\RelayCommand.cs" />
+    <Compile Include="Commands\ICommandCustom.cs" />
     <Compile Include="Connected Services\MusicPlayerServices\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ObservableExtension.cs" />
+    <Compile Include="PlaylistProcessor.cs" />
+    <Compile Include="ViewModel\AddTrackToPlaylistWindowViewModel.cs" />
     <Compile Include="ViewModel\LogInWindowViewModel.cs" />
     <Compile Include="ViewModel\PlayTracksWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\AddTracksToPlaylistWindow.xaml.cs">
+      <DependentUpon>AddTracksToPlaylistWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LogInWindow.xaml.cs">
       <DependentUpon>LogInWindow.xaml</DependentUpon>
     </Compile>
@@ -95,6 +102,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\AddTracksToPlaylistWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LogInWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

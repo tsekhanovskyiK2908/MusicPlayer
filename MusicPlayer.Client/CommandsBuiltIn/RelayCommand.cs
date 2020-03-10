@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MusicPlayer.Client.Command
+namespace MusicPlayer.Client.CommandsBuiltIn
 {
     public class RelayCommand : ICommand
     {
@@ -22,10 +22,10 @@ namespace MusicPlayer.Client.Command
             _targetCanExecuteMethod = canExecuteMethod;
         }
 
-        public void RaiseCanExecuteChanged()
-        {
-            CanExecuteChanged(this, EventArgs.Empty);
-        }
+        //public void RaiseCanExecuteChanged()
+        //{
+        //    CanExecuteChanged(this, EventArgs.Empty);
+        //}
         bool ICommand.CanExecute(object parameter)
         {
             if (_targetCanExecuteMethod != null)
@@ -39,7 +39,17 @@ namespace MusicPlayer.Client.Command
             return false;
         }
 
-        public event EventHandler CanExecuteChanged = delegate { };
+        public event EventHandler CanExecuteChanged
+        {
+            add 
+            { 
+                CommandManager.RequerySuggested += value; 
+            }
+            remove 
+            { 
+                CommandManager.RequerySuggested -= value; 
+            }
+        }
 
         void ICommand.Execute(object parameter)
         {
