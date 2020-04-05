@@ -13,10 +13,17 @@ namespace MusicPlayer.Client.CommandsCustom
     {
         private List<ICommandCustom> _commands;
         private ICommandCustom _command;
+        private int _commandsCount;
+
+        public int CurrentCommand { get; private set; }
+
+        public int CommandsCount { get; private set; }
 
         public Invoker()
         {
             _commands = new List<ICommandCustom>();
+            CommandsCount = _commands.Count;
+            CurrentCommand = -1;
         }
 
         public void SetCommand(ICommandCustom commandCustom)
@@ -26,9 +33,23 @@ namespace MusicPlayer.Client.CommandsCustom
 
         public void Invoke()
         {
-            _commands.Add(_command);
-
+            CurrentCommand++;
+            _commands.Insert(CurrentCommand, _command);
             _command.Execute();
         }
+
+        public void ReInvoke()
+        {   
+            if(CurrentCommand >= 0)
+            {
+                _commands[CurrentCommand].UnExecute();
+                CurrentCommand--;
+            }            
+        }
+        //public void Redo()
+        //{
+        //    CurrentCommand++;
+        //    _commands[CurrentCommand].Execute();
+        //}
     }
 }

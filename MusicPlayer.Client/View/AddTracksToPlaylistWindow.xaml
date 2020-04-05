@@ -27,15 +27,27 @@
             <Button Width="70"
                     Height="30"
                     Margin="10"
-                    Command="{Binding Path=UndoAddTrackCommand}">
-                Redo
+                    Command="{Binding Path=RemoveTrackCommand}">
+                 Remove Track
+            </Button>
+            <Button Width="70"
+                    Height="30"
+                    Margin="10"
+                    Command="{Binding Path=UndoTrackCommand}">
+                 Undo
+            </Button><Button Width="70"
+                    Height="30"
+                    Margin="10"
+                    Command="{Binding Path=RedoTrackCommand}">
+                 Redo
             </Button>
         </StackPanel>
         <StackPanel Grid.Column="1">
             <ListView Width="250"
                   Height="300"
                   VerticalAlignment="Top"
-                  ItemsSource="{Binding Path=TracksInPlaylist}">
+                  ItemsSource="{Binding Path=TracksInPlaylist}"
+                  SelectedItem="{Binding Path=TrackInPlaylist}">
             </ListView>
             <!--<Button Width="70"
                     Height="30"

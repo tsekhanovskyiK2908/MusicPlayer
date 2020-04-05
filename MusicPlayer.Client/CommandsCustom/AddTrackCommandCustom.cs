@@ -23,5 +23,10 @@ namespace MusicPlayer.Client.CommandsCustom
         {
             _playlistProcessor.AddTrack(_track);
         }
+
+        public void UnExecute()
+        {
+            _playlistProcessor.RemoveTrack(_track);
+        }
     }
 }
