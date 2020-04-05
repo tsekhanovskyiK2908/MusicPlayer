@@ -14,6 +14,7 @@ namespace MusicPlayer.Client
     public class PlaylistProcessor
     {
         private ObservableCollection<Track> _tracksInPlaylist;
+
         public PlaylistProcessor(ObservableCollection<Track> tracksInPlaylist)
         {
             _tracksInPlaylist = tracksInPlaylist;

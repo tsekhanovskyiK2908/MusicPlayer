@@ -67,9 +67,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CommandsBuiltIn\AddTrackCommand.cs" />
     <Compile Include="CommandsBuiltIn\RelayCommand.cs" />
-    <Compile Include="Commands\ICommandCustom.cs" />
+    <Compile Include="CommandsCustom\AddTrackCommandCustom.cs" />
+    <Compile Include="CommandsCustom\ICommandCustom.cs" />
+    <Compile Include="CommandsCustom\Invoker.cs" />
+    <Compile Include="CommandsCustom\RemoveTrackCommandCustom.cs" />
     <Compile Include="Connected Services\MusicPlayerServices\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

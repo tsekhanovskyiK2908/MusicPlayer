@@ -21,11 +21,7 @@ namespace MusicPlayer.Client.CommandsBuiltIn
         {
             _targetCanExecuteMethod = canExecuteMethod;
         }
-
-        //public void RaiseCanExecuteChanged()
-        //{
-        //    CanExecuteChanged(this, EventArgs.Empty);
-        //}
+        
         bool ICommand.CanExecute(object parameter)
         {
             if (_targetCanExecuteMethod != null)
@@ -76,9 +72,16 @@ namespace MusicPlayer.Client.CommandsBuiltIn
             _targetCanExecuteMethod = canExecuteMethod;
         }
 
-        public void RaiseCanExecuteChanged()
+        public event EventHandler CanExecuteChanged
         {
-            CanExecuteChanged(this, EventArgs.Empty);
+            add
+            {
+                CommandManager.RequerySuggested += value;
+            }
+            remove
+            {
+                CommandManager.RequerySuggested -= value;
+            }
         }
 
         bool ICommand.CanExecute(object parameter)
@@ -94,7 +97,6 @@ namespace MusicPlayer.Client.CommandsBuiltIn
             }
             return false;
         }
-        public event EventHandler CanExecuteChanged = delegate { };
 
         void ICommand.Execute(object parameter)
         {
