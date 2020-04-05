@@ -52,20 +52,20 @@ namespace MusicPlayer.Client.ViewModel
             AddTrackCommand = new RelayCommand(OnAddTrack, OnCanAddTrack);
             RemoveTrackCommand = new RelayCommand(OnRemoveTrack, OnCanRemoveTrack);
             UndoTrackCommand = new RelayCommand(OnUndo, OnCanUndo);
-            //RedoTrackCommand = new RelayCommand(OnRedo, OnCanRedo);
+            RedoTrackCommand = new RelayCommand(OnRedo, OnCanRedo);
 
             _invoker = new Invoker();
         }
 
-        //private bool OnCanRedo()
-        //{
-        //    if(_invoker.CurrentCommand<=_invoker.CommandsCount)
-        //    {
-        //        return true;
-        //    }
+        private bool OnCanRedo()
+        {
+            if (_invoker.RedoCount > 0)
+            {
+                return true;
+            }
 
-        //    return false;
-        //}
+            return false;
+        }
 
         private bool OnCanUndo()
         {
@@ -77,10 +77,10 @@ namespace MusicPlayer.Client.ViewModel
             return false;
         }
 
-        //private void OnRedo()
-        //{
-        //    _invoker.Redo();
-        //}
+        private void OnRedo()
+        {
+            _invoker.Redo();
+        }
 
         private void OnUndo()
         {
