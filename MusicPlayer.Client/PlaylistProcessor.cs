@@ -25,10 +25,10 @@ namespace MusicPlayer.Client
             _tracksInPlaylist.Add(track);
         }
 
-        public void RemoveTrack()
+        public void RemoveTrack(Track track)
         {
             var count = _tracksInPlaylist.Count;
-            _tracksInPlaylist.RemoveAt(count - 1);
+            _tracksInPlaylist.Remove(track);
         }
     }
 }

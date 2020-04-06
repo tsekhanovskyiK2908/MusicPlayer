@@ -12,5 +12,6 @@ namespace MusicPlayer.Client.CommandsCustom
     public interface ICommandCustom
     {
         void Execute();
+        void UnExecute();
     }
 }
