@@ -27,7 +27,6 @@ namespace MusicPlayer.Client
 
         public void RemoveTrack(Track track)
         {
-            var count = _tracksInPlaylist.Count;
             _tracksInPlaylist.Remove(track);
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MusicPlayer.Client.Memento;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,14 +14,15 @@ namespace MusicPlayer.Client.CommandsCustom
     {
         private List<ICommandCustom> _commands;
         private ICommandCustom _command;
-        public int CurrentCommand { get; private set; }
+        private OperationCaretaker _operationCaretaker;
 
         public int RedoCount { get; private set; }
+        public int CommandsCount { get; private set; }
 
         public Invoker()
         {
             _commands = new List<ICommandCustom>();
-            CurrentCommand = -1;
+            _operationCaretaker = new OperationCaretaker();
         }
 
         public void SetCommand(ICommandCustom commandCustom)
@@ -28,28 +30,55 @@ namespace MusicPlayer.Client.CommandsCustom
             _command = commandCustom;
         }
 
+
         public void Invoke()
         {
-            CurrentCommand++;
-            _commands.Insert(CurrentCommand, _command);
-            RedoCount = 0;
+            var memento = CreateMemento();
+            _operationCaretaker.UndoCommand = memento; 
+
+            _commands.Add(_command);
             _command.Execute();
+
+            RedoCount = 0;
+            CommandsCount++;
         }
 
-        public void ReInvoke()
-        {   
-            if(CurrentCommand >= 0)
-            {
-                _commands[CurrentCommand].UnExecute();
-                CurrentCommand--;
-                RedoCount++;
-            }            
+        public void Undo()
+        {
+            var mementoCurrent = _operationCaretaker.UndoCommand;
+
+            var memento = CreateMemento();
+
+            _operationCaretaker.RedoCommand = memento;
+
+            SetMemento(mementoCurrent);
+            _command.UnExecute();
+            _commands.Remove(_command);
+            
+            RedoCount++;
+            CommandsCount--;
         }
+
         public void Redo()
         {
-            CurrentCommand++;
-            _commands[CurrentCommand].Execute();
+            var mementoCurrent = _operationCaretaker.RedoCommand;
+
+            SetMemento(mementoCurrent);
+            _commands.Add(_command);
+            _command.Execute();
+
             RedoCount--;
+            CommandsCount++;
+        }
+
+        public void SetMemento(OperationMemento operationMemento)
+        {
+            _command = operationMemento.GetCommand();
+        }
+
+        public OperationMemento CreateMemento()
+        {
+            return new OperationMemento(_command);
         }
     }
 }
