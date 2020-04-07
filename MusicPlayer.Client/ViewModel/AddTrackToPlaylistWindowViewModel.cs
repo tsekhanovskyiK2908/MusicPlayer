@@ -22,7 +22,6 @@ namespace MusicPlayer.Client.ViewModel
         private Track _selectedTrackInPlaylist;
         private ObservableCollection<Track> _tracks;
         private ObservableCollection<Track> _tracksInPlaylist;
-        private bool _trackWasAdded;        
         private ITrackProcessor _trackProcessor;
 
         //Custom command
@@ -32,12 +31,10 @@ namespace MusicPlayer.Client.ViewModel
 
 
         public ICommand AddTrackCommand { get; set; }
-
         public ICommand RemoveTrackCommand { get; set; }
         public ICommand UndoTrackCommand { get; set; }
         public ICommand RedoTrackCommand { get; set; }
 
-        //Custom command
         private ICommandCustom _addTrackCommandCustom;
 
         private ICommandCustom _removeTrackCommandCustom;
@@ -51,15 +48,15 @@ namespace MusicPlayer.Client.ViewModel
             _tracks = _trackProcessor.LoadTracks().ToObservableCollection();
             AddTrackCommand = new RelayCommand(OnAddTrack, OnCanAddTrack);
             RemoveTrackCommand = new RelayCommand(OnRemoveTrack, OnCanRemoveTrack);
-            UndoTrackCommand = new RelayCommand(OnUndo, OnCanUndo);
-            RedoTrackCommand = new RelayCommand(OnRedo, OnCanRedo);
+            UndoTrackCommand = new RelayCommand(OnUndoTrack, OnCanUndoTrack);
+            RedoTrackCommand = new RelayCommand(OnRedoTrack, OnCanRedoTrack);
 
             _invoker = new Invoker();
         }
 
-        private bool OnCanRedo()
+        private bool OnCanRedoTrack()
         {
-            if (_invoker.RedoCount > 0)
+            if(_invoker.RedoCount > 0)
             {
                 return true;
             }
@@ -67,9 +64,9 @@ namespace MusicPlayer.Client.ViewModel
             return false;
         }
 
-        private bool OnCanUndo()
+        private bool OnCanUndoTrack()
         {
-            if(_invoker.CurrentCommand > -1)
+            if(_invoker.CommandsCount > 0)
             {
                 return true;
             }
@@ -77,14 +74,14 @@ namespace MusicPlayer.Client.ViewModel
             return false;
         }
 
-        private void OnRedo()
+        private void OnRedoTrack()
         {
             _invoker.Redo();
         }
 
-        private void OnUndo()
+        private void OnUndoTrack()
         {
-            _invoker.ReInvoke();
+            _invoker.Undo();
         }
 
         private bool OnCanRemoveTrack()
@@ -104,7 +101,6 @@ namespace MusicPlayer.Client.ViewModel
 
             _invoker.SetCommand(_removeTrackCommandCustom);
             _invoker.Invoke();
-            _trackWasAdded = false;
         }
 
         private bool OnCanAddTrack()
@@ -125,7 +121,6 @@ namespace MusicPlayer.Client.ViewModel
             _invoker.SetCommand(_addTrackCommandCustom);
             _invoker.Invoke();
 
-            _trackWasAdded = true;
         }
 
         public Track Track 

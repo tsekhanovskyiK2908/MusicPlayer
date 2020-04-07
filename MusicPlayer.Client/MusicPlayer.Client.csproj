@@ -77,6 +77,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Memento\OperationCaretaker.cs" />
+    <Compile Include="Memento\OperationMemento.cs" />
     <Compile Include="ObservableExtension.cs" />
     <Compile Include="PlaylistProcessor.cs" />
     <Compile Include="ViewModel\AddTrackToPlaylistWindowViewModel.cs" />
