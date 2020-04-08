@@ -66,7 +66,7 @@ namespace MusicPlayer.Client.ViewModel
 
         private bool OnCanUndoTrack()
         {
-            if(_invoker.CommandsCount > 0)
+            if(_invoker.CommandsCount > -1)
             {
                 return true;
             }

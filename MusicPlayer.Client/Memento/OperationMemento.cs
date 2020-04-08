@@ -9,14 +9,14 @@ namespace MusicPlayer.Client.Memento
 {
     public class OperationMemento
     {
-        private ICommandCustom _operation;
+        private Action _operation;
 
-        public OperationMemento(ICommandCustom commandCustom)
+        public OperationMemento(Action commandCustom)
         {
             _operation = commandCustom;
         }
 
-        public ICommandCustom GetCommand()
+        public Action GetCommand()
         {
             return _operation;
         }

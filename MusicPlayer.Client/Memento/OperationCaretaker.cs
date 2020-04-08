@@ -22,8 +22,7 @@ namespace MusicPlayer.Client.Memento
         {
             get
             {
-                var v = _undoStack.Pop();
-                return v;
+                return _undoStack.Pop();
             }
             set
             {

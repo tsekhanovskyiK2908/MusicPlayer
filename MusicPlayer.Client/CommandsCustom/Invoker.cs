@@ -15,6 +15,7 @@ namespace MusicPlayer.Client.CommandsCustom
         private List<ICommandCustom> _commands;
         private ICommandCustom _command;
         private OperationCaretaker _operationCaretaker;
+        private Action _commandReverse;
 
         public int RedoCount { get; private set; }
         public int CommandsCount { get; private set; }
@@ -23,6 +24,7 @@ namespace MusicPlayer.Client.CommandsCustom
         {
             _commands = new List<ICommandCustom>();
             _operationCaretaker = new OperationCaretaker();
+            CommandsCount = -1;
         }
 
         public void SetCommand(ICommandCustom commandCustom)
@@ -33,27 +35,30 @@ namespace MusicPlayer.Client.CommandsCustom
 
         public void Invoke()
         {
-            var memento = CreateMemento();
-            _operationCaretaker.UndoCommand = memento; 
+            _commandReverse = _command.UnExecute;
 
-            _commands.Add(_command);
+            var memento = CreateMemento();
+            _operationCaretaker.UndoCommand = memento;
+
+            CommandsCount++;
+            _commands.Insert(CommandsCount, _command);
             _command.Execute();
 
             RedoCount = 0;
-            CommandsCount++;
         }
 
         public void Undo()
         {
-            var mementoCurrent = _operationCaretaker.UndoCommand;
+            var mementoToComeBack = _operationCaretaker.UndoCommand;
+
+            _commandReverse = _commands[CommandsCount].Execute;
 
             var memento = CreateMemento();
-
             _operationCaretaker.RedoCommand = memento;
 
-            SetMemento(mementoCurrent);
-            _command.UnExecute();
-            _commands.Remove(_command);
+            SetMemento(mementoToComeBack);
+
+            _commandReverse();
             
             RedoCount++;
             CommandsCount--;
@@ -61,11 +66,16 @@ namespace MusicPlayer.Client.CommandsCustom
 
         public void Redo()
         {
-            var mementoCurrent = _operationCaretaker.RedoCommand;
+            var mementoToGoBack = _operationCaretaker.RedoCommand;
 
-            SetMemento(mementoCurrent);
-            _commands.Add(_command);
-            _command.Execute();
+            _commandReverse = _commands[CommandsCount].UnExecute;
+
+            var memento = CreateMemento();
+            _operationCaretaker.UndoCommand = memento;
+
+            SetMemento(mementoToGoBack);
+
+            _commandReverse();
 
             RedoCount--;
             CommandsCount++;
@@ -73,12 +83,12 @@ namespace MusicPlayer.Client.CommandsCustom
 
         public void SetMemento(OperationMemento operationMemento)
         {
-            _command = operationMemento.GetCommand();
+            _commandReverse = operationMemento.GetCommand();
         }
 
         public OperationMemento CreateMemento()
         {
-            return new OperationMemento(_command);
+            return new OperationMemento(_commandReverse);
         }
     }
 }
