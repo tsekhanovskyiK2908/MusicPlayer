@@ -44,11 +44,18 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="NAudio, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.10.0\lib\net35\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="policy.2.0.taglib-sharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
+      <HintPath>..\packages\taglib.2.1.0.0\lib\policy.2.0.taglib-sharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -57,6 +64,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="taglib-sharp, Version=2.1.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
+      <HintPath>..\packages\taglib.2.1.0.0\lib\taglib-sharp.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -77,16 +87,32 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Facade\ITrackFolderFacade.cs" />
+    <Compile Include="Facade\TrackFolderFacade.cs" />
+    <Compile Include="FrontendServices\Abs\IDialogService.cs" />
+    <Compile Include="FrontendServices\Abs\IIOService.cs" />
+    <Compile Include="FrontendServices\Abs\ITrackCreator.cs" />
+    <Compile Include="FrontendServices\Abs\ITrackService.cs" />
+    <Compile Include="FrontendServices\DialogSettings.cs" />
+    <Compile Include="FrontendServices\Impl\DialogService.cs" />
+    <Compile Include="FrontendServices\Impl\IOService.cs" />
+    <Compile Include="FrontendServices\Impl\MP3TrackCreator.cs" />
+    <Compile Include="FrontendServices\Impl\TrackService.cs" />
+    <Compile Include="FrontendServices\Impl\WavTrackCreator.cs" />
     <Compile Include="Memento\OperationCaretaker.cs" />
     <Compile Include="Memento\OperationMemento.cs" />
     <Compile Include="ObservableExtension.cs" />
     <Compile Include="PlaylistProcessor.cs" />
     <Compile Include="ViewModel\AddTrackToPlaylistWindowViewModel.cs" />
+    <Compile Include="ViewModel\GetTracksFromFolderWindowViewModel.cs" />
     <Compile Include="ViewModel\LogInWindowViewModel.cs" />
     <Compile Include="ViewModel\PlayTracksWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddTracksToPlaylistWindow.xaml.cs">
       <DependentUpon>AddTracksToPlaylistWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GetTracksFromFolderWindow.xaml.cs">
+      <DependentUpon>GetTracksFromFolderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LogInWindow.xaml.cs">
       <DependentUpon>LogInWindow.xaml</DependentUpon>
@@ -107,6 +133,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\AddTracksToPlaylistWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GetTracksFromFolderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -190,6 +220,10 @@
     <ProjectReference Include="..\MusicPlayer.Entities\MusicPlayer.Entities.csproj">
       <Project>{67f81478-f18f-4a95-bc21-d2fa232cbb77}</Project>
       <Name>MusicPlayer.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MusicPlayer.Models\MusicPlayer.Models.csproj">
+      <Project>{06E1A76C-80A4-4D1F-93E5-87F7945825D8}</Project>
+      <Name>MusicPlayer.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
